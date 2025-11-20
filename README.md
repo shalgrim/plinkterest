@@ -7,7 +7,7 @@ A Chrome extension that opens all pins from a Pinterest board in new tabs with a
 - Automatically detects pins on Pinterest board pages
 - Shows the count of pins found on the current page
 - Opens all pins in new tabs with a single click
-- Includes confirmation dialog before opening multiple tabs
+- Filters out product recommendations and shopping links
 - Adds a small delay between opening tabs to prevent browser throttling
 
 ## Installation
@@ -16,23 +16,15 @@ A Chrome extension that opens all pins from a Pinterest board in new tabs with a
 
 1. Clone or download this repository to your local machine
 
-2. Create the extension icons (optional):
-   ```bash
-   pip install pillow
-   python3 create_icons.py
-   ```
+2. Open Chrome and navigate to `chrome://extensions/`
 
-   If you skip this step, you'll need to remove the icon references from `manifest.json` or add your own icon files.
+3. Enable "Developer mode" by toggling the switch in the top-right corner
 
-3. Open Chrome and navigate to `chrome://extensions/`
+4. Click "Load unpacked" button
 
-4. Enable "Developer mode" by toggling the switch in the top-right corner
+5. Select the `plinkterest` directory (the folder containing `manifest.json`)
 
-5. Click "Load unpacked" button
-
-6. Select the `plinkterest` directory (the folder containing `manifest.json`)
-
-7. The extension should now appear in your Chrome toolbar
+6. The extension should now appear in your Chrome toolbar
 
 ### Option 2: Create a .crx Package (For Distribution)
 
@@ -51,9 +43,7 @@ A Chrome extension that opens all pins from a Pinterest board in new tabs with a
 
 4. Click the "Open All Pins" button
 
-5. Confirm the action in the dialog box
-
-6. All pins will open in new tabs with a small delay between each one
+5. All pins will open in new tabs with a small delay between each one
 
 ## How It Works
 
