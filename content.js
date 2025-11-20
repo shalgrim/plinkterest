@@ -22,10 +22,38 @@ function getPinLinks() {
 
   pinElements.forEach(element => {
     const href = element.href;
-    // Make sure it's a valid pin URL and not a duplicate
-    if (href && href.includes('/pin/') && !links.includes(href)) {
-      links.push(href);
+
+    // Skip if no href or already in list
+    if (!href || !href.includes('/pin/') || links.includes(href)) {
+      return;
     }
+
+    // Skip product/shopping links (have tracking parameters)
+    if (href.includes('?mt=') || href.includes('&mt=') || href.includes('/shop/')) {
+      return;
+    }
+
+    // Skip if element is in a "products" or "ideas" section
+    const parentText = element.closest('[data-test-id]')?.getAttribute('data-test-id') || '';
+    if (parentText.includes('product') || parentText.includes('shop')) {
+      return;
+    }
+
+    // Check if any parent has text indicating it's a product section
+    let parent = element.parentElement;
+    let skipCount = 0;
+    while (parent && skipCount < 10) {
+      const ariaLabel = parent.getAttribute('aria-label') || '';
+      if (ariaLabel.toLowerCase().includes('product') ||
+          ariaLabel.toLowerCase().includes('shop') ||
+          ariaLabel.toLowerCase().includes('inspired')) {
+        return;
+      }
+      parent = parent.parentElement;
+      skipCount++;
+    }
+
+    links.push(href);
   });
 
   return links;
