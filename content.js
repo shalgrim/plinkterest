@@ -36,14 +36,6 @@ function openAllPins() {
   const links = getPinLinks();
 
   if (links.length === 0) {
-    alert('No pins found on this page. Make sure you are on a Pinterest board page.');
-    return;
-  }
-
-  // Ask for confirmation before opening many tabs
-  const confirmed = confirm(`This will open ${links.length} pins in new tabs. Continue?`);
-
-  if (!confirmed) {
     return;
   }
 
@@ -54,6 +46,4 @@ function openAllPins() {
       window.open(link, '_blank');
     }, index * 100); // 100ms delay between each tab
   });
-
-  alert(`Opening ${links.length} pins in new tabs!`);
 }
