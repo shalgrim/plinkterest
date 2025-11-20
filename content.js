@@ -53,6 +53,15 @@ function getPinLinks() {
       skipCount++;
     }
 
+    // Skip product pins - they have images with object-fit: contain style
+    const img = element.querySelector('img');
+    if (img) {
+      const style = img.getAttribute('style') || '';
+      if (style.includes('object-fit: contain')) {
+        return;
+      }
+    }
+
     links.push(href);
   });
 
